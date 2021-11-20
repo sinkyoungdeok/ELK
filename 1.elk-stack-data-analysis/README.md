@@ -63,6 +63,111 @@ brew services start elastic/tap/logstash-full
 
 <details> <summary> 2. 엘라스틱서치 데이터 입력 조회 삭제 (GET, POST, PUT, DELETE) </summary>
 
+## 2. 엘라스틱서치 데이터 입력 조회 삭제 (GET, POST, PUT, DELETE)
+
+1. classes index가 있는지 조회 (아직은 생성안해서 조회 안되는게 맞음)
+`curl -XGET http://localhost:9200/classes` 
+2. 조회할 때 이쁘게 보기 
+`curl -XGET http://localhost:9200/classes?pretty`  
+3. index가 없다는 것을 확인했으니, 인덱스 생성 해보자.
+`curl -XPUT http://localhost:9200/classes`
+4. 생성된것을 조회
+`curl -XGET http://localhost:9200/classes?pretty`    
+```
+{
+  "classes" : {
+    "aliases" : { },
+    "mappings" : { },
+    "settings" : {
+      "index" : {
+        "routing" : {
+          "allocation" : {
+            "include" : {
+              "_tier_preference" : "data_content"
+            }
+          }
+        },
+        "number_of_shards" : "1",
+        "provided_name" : "classes",
+        "creation_date" : "1637410676372",
+        "number_of_replicas" : "1",
+        "uuid" : "sTOr1fWFTIe0JKaThOQ4LQ",
+        "version" : {
+          "created" : "7150299"
+        }
+      }
+    }
+  }
+}
+```
+5. 생성한 index 지우기 
+`curl -XDELETE http://localhost:9200/classes`
+6. document 생성하기
+```
+curl -XPOST http://localhost:9200/classes/class/1/ -H 'Content-Type: application/json'  -d '
+{"title":"Algorithm", "professor":"John"}'
+```
+index가 생성된 상태에서 해도 되고, 생성안된 상태에서 해도 된다.  
+index를 생성 안된상태에서 하면, 알아서 index 생성까지 해준다.
+
+7. 생성된것을 조회 
+`curl -XGET http://localhost:9200/classes?pretty`    
+**결과**  
+```
+{
+  "classes" : {
+    "aliases" : { },
+    "mappings" : {
+      "properties" : {
+        "professor" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword",
+              "ignore_above" : 256
+            }
+          }
+        },
+        "title" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword",
+              "ignore_above" : 256
+            }
+          }
+        }
+      }
+    },
+    "settings" : {
+      "index" : {
+        "routing" : {
+          "allocation" : {
+            "include" : {
+              "_tier_preference" : "data_content"
+            }
+          }
+        },
+        "number_of_shards" : "1",
+        "provided_name" : "classes",
+        "creation_date" : "1637411566405",
+        "number_of_replicas" : "1",
+        "uuid" : "HCTipXo6Stqya6SKmAXlsw",
+        "version" : {
+          "created" : "7150299"
+        }
+      }
+    }
+  }
+}
+``` 
+
+8. json파일로 document 생성 
+`curl -XPOST http://localhost:9200/classes/class/1/ -H 'Content-Type: application/json' -d @oneclass.json` 
+
+
+
+
 </details>
 
 <details> <summary> 3. 엘라스틱서치 데이터 업데이트 (UPDATE) </summary>
