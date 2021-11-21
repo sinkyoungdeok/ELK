@@ -172,6 +172,33 @@ index를 생성 안된상태에서 하면, 알아서 index 생성까지 해준�
 
 <details> <summary> 3. 엘라스틱서치 데이터 업데이트 (UPDATE) </summary>
 
+## 3. 엘라스틱서치 데이터 업데이트 (UPDATE)
+
+1. 업데이트할 데이터를 위해서 document 생성
+```
+curl -XPOST http://localhost:9200/classes/class/1/ -H 'Content-Type: application/json' -d '{"title": "Algorithm", "professor": "John"}'
+``` 
+
+2. 1학점이라는 필드를 추가
+```
+curl -XPOST http://localhost:9200/classes/class/1/_update -H 'Content-Type: application/json' -d '{"doc" : {"unit" : 1}}'
+``` 
+
+3. 추가 된 것 확인
+```
+curl -XGET http://localhost:9200/classes/class/1?pretty
+``` 
+
+4. 학점을 1에서 2로 수정
+```
+curl -XPOST http://localhost:9200/classes/class/1/_update -H 'Content-Type: application/json' -d '{"doc" : {"unit" : 2}}'
+```
+
+5. 학점에 script로 +5 시키기
+```
+curl -XPOST http://localhost:9200/classes/class/1/_update -H 'Content-Type: application/json' -d '{"script": "ctx._source.unit += 5"}'
+```
+
 </details>
 
 <details> <summary> 4. 엘라스틱서치 - 벌크 (Bulk) </summary>
