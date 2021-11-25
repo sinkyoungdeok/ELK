@@ -219,6 +219,36 @@ curl -XGET http://localhost:9200/classes/class/2?pretty
 
 <details> <summary> 5. 엘라스틱서치 매칭 (Mapping) </summary>
 
+## 5. 엘라스틱서치 매칭 (Mapping)
+
+- 매핑은 데이터베이스의 스키마와 동일하다. 
+- 엘라스틱서치는 매핑없이도 insert 할 수 있다. 
+- 실제 일할때는 매핑 없이 데이터를 넣는것은 상당히 위험한 일이다. 
+  - 매핑이 없다면 날짜를 문자열로 인식할 수 있다. 
+  - 매핑이 없다면 숫자를 넣을때도 문자열로 인식할 수 있다. 
+  - 그렇다면, 평균을 낼 때도 문자열로 인식되면 잘 안될 수 있다. 
+- 데이터를 넣을때에는 매핑을 먼저 추가해야 된다. 
+
+
+1. 인덱스 생성
+```
+curl -XPUT 'http://localhost:9200/classes'
+``` 
+2. 매핑 생성
+```
+curl -XPUT 'http://localhost:9200/classes/class/_mapping' -H 'Content-Type: application/json' -d @classesRating_mapping.json
+``` 
+3. CLASSES.JSON 을 bulk
+```
+curl -XPOST http://localhost:9200/_bulk --data-binary  @classes.json -H 'Content-Type: application/json'
+``` 
+4. bulk 확인 
+```
+curl -XGET http://localhost:9200/classes/class/2?pretty
+```
+- 지금 실습에서는 mapping없이 bulk했을 때와의 차이점은 크게 없는 것 같다. (데이터 형식을 생각보다 알아서 잘 매칭해주는 듯함)
+- 하지만, 데이터형식을 언제 다르게 해줄지 모르니, 항상 mapping을 먼저 생성해주는 것이 좋은 것 같다. 
+
 </details>
 
 <details> <summary> 6. 엘라스틱서치 데이터 조회 (Search) </summary>
