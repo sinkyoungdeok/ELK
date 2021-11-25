@@ -203,6 +203,18 @@ curl -XPOST http://localhost:9200/classes/class/1/_update -H 'Content-Type: appl
 
 <details> <summary> 4. 엘라스틱서치 - 벌크 (Bulk) </summary>
 
+## 4. 엘라스틱서치 - 벌크 (Bulk)
+
+1. CLASSES.JSON 을 bulk
+```
+curl -XPOST http://localhost:9200/_bulk --data-binary  @classes.json -H 'Content-Type: application/json'
+``` 
+
+2. bulk 확인 
+```
+curl -XGET http://localhost:9200/classes/class/2?pretty
+```
+
 </details>
 
 <details> <summary> 5. 엘라스틱서치 매칭 (Mapping) </summary>
