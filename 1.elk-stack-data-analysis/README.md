@@ -353,3 +353,36 @@ curl -XGET http://localhost:9200/_search?pretty --data-binary @stats_by_team.jso
 ``` 
 
 </details>
+
+
+# 3. 키바나
+
+<details> <summary> 1. 키바나 설치 확인 </summary>
+
+## 1. 키바나 설치 확인
+
+http://localhost:5601 접속 확인
+
+</details>
+
+<details> <summary> 2. 키바나 매니지먼트 (Kibana management) </summary>
+
+</details>
+
+<details> <summary> 3. 키바나 디스커버(Kibana discover) </summary>
+
+</details>
+
+<details> <summary> 4. 키바나 비주얼라이즈(Kibana Visualize) - 막대 그래프, 파이차트 </summary>
+
+</details>
+
+<details> <summary> 5. 키바나 비주얼라이즈(Kibana Visualize) - 타일 맵, 지포에 표시 </summary>
+
+</details>
+
+
+<details> <summary> 6. 키바나 대시보드(Dashboard) </summary>
+
+</details>
+
