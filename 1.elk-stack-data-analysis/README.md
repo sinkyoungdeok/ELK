@@ -284,6 +284,40 @@ curl -XGET http://localhost:9200/basketball/record/_search?pretty -H 'Content-Ty
 
 <details> <summary> 7. 엘라스틱서치 메트릭 어그리게이션 (Metric Aggregation) </summary>
 
+## 7. 엘라스틱서치 메트릭 어그리게이션 (Metric Aggregation)
+
+- 평균, 합산 등을 구하는 것이 Metric Aggregation
+
+1. 데이터 생성
+```
+curl -XPOST http://localhost:9200/_bulk --data-binary @simple_basketball.json -H 'Content-Type: application/json'
+``` 
+
+2. average aggregation 
+```
+curl -XGET http://localhost:9200/_search?pretty --data-binary @avg_points_aggs.json -H 'Content-Type: application/json'
+```  
+
+3. max aggregation 
+```
+curl -XGET http://localhost:9200/_search?pretty --data-binary @max_points_aggs.json -H 'Content-Type: application/json'
+```  
+
+4. min aggregation 
+```
+curl -XGET http://localhost:9200/_search?pretty --data-binary @min_points_aggs.json -H 'Content-Type: application/json'
+```  
+
+5. sum aggregation 
+```
+curl -XGET http://localhost:9200/_search?pretty --data-binary @sum_points_aggs.json -H 'Content-Type: application/json'
+```  
+
+6. stats aggregation (지금까지 한 모든 aggregation을 한번에)
+```
+curl -XGET http://localhost:9200/_search?pretty --data-binary @stats_points_aggs.json -H 'Content-Type: application/json'
+```  
+
 </details>
 
 <details> <summary> 8. 엘라스틱서치 버켓 어그리게이션 (Bucket Aggregation) </summary>
