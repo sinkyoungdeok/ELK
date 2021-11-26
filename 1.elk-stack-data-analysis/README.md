@@ -253,6 +253,33 @@ curl -XGET http://localhost:9200/classes/class/2?pretty
 
 <details> <summary> 6. 엘라스틱서치 데이터 조회 (Search) </summary>
 
+## 6. 엘라스틱서치 데이터 조회 (Search)
+
+1. 데이터 생성
+```
+curl -XPOST http://localhost:9200/_bulk --data-binary @simple_basketball.json -H 'Content-Type: application/json'
+``` 
+
+2. 데이터 확인
+```
+curl -XGET http://localhost:9200/basketball/record/_search?pretty
+``` 
+
+3. uri옵션으로 데이터 확인
+```
+curl -XGET http://localhost:9200/basketball/record/_search?q=points:30&pretty
+```  
+
+4. REQUEST BODY 로 데이터 확인 
+```
+curl -XGET http://localhost:9200/basketball/record/_search?pretty -H 'Content-Type: application/json' -d '
+{ 
+  "query": {
+    "term" : {"points": 30}
+  }
+}'
+``` 
+
 </details>
 
 <details> <summary> 7. 엘라스틱서치 메트릭 어그리게이션 (Metric Aggregation) </summary>
