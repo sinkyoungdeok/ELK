@@ -367,6 +367,37 @@ http://localhost:5601 접속 확인
 
 <details> <summary> 2. 키바나 매니지먼트 (Kibana management) </summary>
 
+## 2. 키바나 매니지먼트 (Kibana management)
+
+1. 이전에 진행한 index 제거 
+```
+curl -XDELETE localhost:9200/basketball
+``` 
+
+2. 새로 index 생성
+```
+curl -XPUT localhost:9200/basketball
+``` 
+
+3. mapping정보 입력
+```
+curl -XPUT 'localhost:9200/basketball/record/_mapping?include_type_name=true&pretty' -H'Content-Type: application/json' -d @basketball_mapping.json
+```
+
+4. 데이터 삽입(bulk)
+```
+curl -XPOST http://localhost:9200/_bulk?pretty -H 'Content-Type: application/json' --data-binary @bulk_basketball.json
+``` 
+
+5. kibana 접속 후 index패턴 생성
+![image](https://user-images.githubusercontent.com/28394879/143597413-f6c18934-791a-4cf8-a1fe-820df28478f3.png)
+
+6. 데이터가 kibana에 잘 인식됐는지 확인
+![image](https://user-images.githubusercontent.com/28394879/143597714-28cfc916-7afa-419b-9189-c9a7296ae569.png)
+
+
+
+
 </details>
 
 <details> <summary> 3. 키바나 디스커버(Kibana discover) </summary>
