@@ -402,6 +402,29 @@ curl -XPOST http://localhost:9200/_bulk?pretty -H 'Content-Type: application/jso
 
 <details> <summary> 3. 키바나 디스커버(Kibana discover) </summary>
 
+## 3. 키바나 디스커버(Kibana discover)
+
+1. Kibana에서 디스커버 탭으로 들어가서, 2016년까지의 데이터 (2021년기준으론 약 6년전까지로 설정)를 검색
+```
+http://localhost:5601/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-8y,to:now))&_a=(columns:!(),filters:!(),index:'3be87030-4ec7-11ec-b89d-c5bc45c36b0c',interval:auto,query:(language:kuery,query:''),sort:!(!(submit_date,desc)))
+``` 
+
+2. 2016~2017까지의 데이터 보기 
+```
+http://localhost:5601/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:'2015-12-31T15:40:28.184Z',to:'2017-10-31T15:40:53.079Z'))&_a=(columns:!(),filters:!(),index:'3be87030-4ec7-11ec-b89d-c5bc45c36b0c',interval:auto,query:(language:kuery,query:''),sort:!(!(submit_date,desc)))
+```
+![image](https://user-images.githubusercontent.com/28394879/143604521-1ea36012-c914-48a5-9a47-c63880ed2d66.png)
+
+3. filter로 "Stephen Curry"데이터만 보기
+![image](https://user-images.githubusercontent.com/28394879/143604757-18e90696-8f7a-49e2-b7a4-4e410b0eb30e.png)
+
+4. toggle 버튼으로 원하는 필드 위주로 보기
+![image](https://user-images.githubusercontent.com/28394879/143604953-7d5ee4fa-5a15-40c5-99b0-a6cb5d14b1d4.png)
+
+5. 정렬 버튼으로 원하는 필드로 정렬 하기 
+![image](https://user-images.githubusercontent.com/28394879/143605225-845e7cb7-4f13-4287-9d19-0812c24e3e1c.png)
+
+
 </details>
 
 <details> <summary> 4. 키바나 비주얼라이즈(Kibana Visualize) - 막대 그래프, 파이차트 </summary>
