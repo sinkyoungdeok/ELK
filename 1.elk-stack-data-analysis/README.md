@@ -322,4 +322,28 @@ curl -XGET http://localhost:9200/_search?pretty --data-binary @stats_points_aggs
 
 <details> <summary> 8. 엘라스틱서치 버켓 어그리게이션 (Bucket Aggregation) </summary>
 
+## 8. 엘라스틱서치 버켓 어그리게이션 (Bucket Aggregation)
+
+- group by같은 기능을 사용하는것이 Bucket Aggregation 
+
+1. INDEX 생성
+```
+curl -XPUT localhost:9200/basketball
+``` 
+
+2. mapping 적용
+```
+curl -XPUT http://localhost:9200/basketball/record/mapping -d @basketball_mapping.json -H 'Content-Type: application/json'
+``` 
+
+3. 데이터 삽입(bulk)
+```
+curl -XPOST http://localhost:9200/_bulk --data-binary @twoteam_basketball.json -H 'Content-Type: application/json'
+``` 
+
+4. bucket aggregation
+```
+curl -XGET http://localhost:9200/_search?pretty --data-binary @terms_aggs.json -H 'Content-Type: application/json'
+``` 
+
 </details>
