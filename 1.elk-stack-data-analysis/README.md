@@ -451,6 +451,39 @@ http://localhost:5601/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,v
 
 <details> <summary> 5. 키바나 비주얼라이즈(Kibana Visualize) - 타일 맵, 지포에 표시 </summary>
 
+## 5. 키바나 비주얼라이즈(Kibana Visualize) - 타일 맵, 지포에 표시
+
+1. classes index생성 
+```
+curl -XPUT http://localhost:9200/classes
+``` 
+
+2. mapping 정보 등록(매핑을 통해서 단순 스트링이아닌, 지도에 표시할 수 있는 값임을 나타내주어야 함)
+```
+curl -XPUT http://localhost:9200/classes/class/_mapping?include_type_name=true&pretty -H 'Content-Type: application/json' -d @classesRating_mapping.json
+``` 
+
+3. bulk insert
+```
+curl -XPOST http://localhost:9200/_bulk?pretty -H 'Content-Type: application/json' --data-binary @classes.json
+```
+
+4. 데이터 확인
+```
+curl -XGET http://localhost:9200/classes/class/1/?pretty
+```
+
+5. kibana에서 Management의 StackManagement 클릭
+6. Index Pattern 클릭
+7. Create index Pattern 클릭 
+8. classes* index 생성
+9. Visualize에서 Maps 클릭
+10. Add layer -> Clusters and grids
+11. index pattern를 classes로 적용
+
+![image](https://user-images.githubusercontent.com/28394879/143666574-1cf00a7c-0e66-4fea-9263-dea73cbc1380.png)
+
+
 </details>
 
 
