@@ -497,3 +497,28 @@ curl -XGET http://localhost:9200/classes/class/1/?pretty
 
 </details>
 
+
+# 4. 로그스테시 (Logstash)
+
+<details> <summary> 1. 로그스태시 인스톨 셋업(logstash install) </summary>
+
+## 1. 로그스태시 인스톨 셋업(logstash install)
+
+### 로그 스테시 
+- ELK중에서 인풋을 담당
+- 로그스테시에서 받은 인풋은 변환되어서 elasticsearch로 들어간다.
+- 로그스태시에서 받은 인풋은 원하는 형태로 데이터 형태를 변환한다. (ex: csv -> 수치로 변경) / 변환된 데이터는 elasticsearch로 들어간다. 
+
+![image](https://user-images.githubusercontent.com/28394879/143667031-9a842232-1619-4c3e-b447-6629bb370f66.png)
+
+
+1. cd /usr/local/bin
+2. vi logstash-simple.conf 에 ch04/logstash-simple.conf 내용입력
+3. ./logstash -f logstash-simple.conf
+
+입력한 데이터들이 화면에 뿌려지는것을 확인
+![image](https://user-images.githubusercontent.com/28394879/143667379-83002be3-1078-4cc2-9707-08e415963fee.png)
+
+
+</details>
+
