@@ -526,6 +526,24 @@ curl -XGET http://localhost:9200/classes/class/1/?pretty
 
 <details> <summary> 1. 실전 인구 분석 </summary>
 
+## 1. 실전 인구 분석
+
+1. logstash 실행 
+```
+./logstash -f /Users/singyeongdeog/Documents/github_code/ELK/1.elk-stack-data-analysis/ch05/logstash.conf
+```
+
+2. kibana 에서 "population" index pattern 등록
+
+3. Discover에서 한국의 1980 ~ 2010년 인구 검색 
+![image](https://user-images.githubusercontent.com/28394879/143670077-8ac09097-3e56-45cb-85ab-ca311d545b13.png)
+
+4. Visualize Library의 Vertical bar 에서 1980년도의 각 나라별 인구수 비교 
+![image](https://user-images.githubusercontent.com/28394879/143670587-5ecd1ff1-2e59-46bd-a149-2eff7b396ee8.png)
+
+5. Visualize Library의 Pie를 활용하여 나라별 인구수 비교
+![image](https://user-images.githubusercontent.com/28394879/143670687-6d580f34-6766-490f-a56a-759cc2dc6a10.png)
+
 </details>
 
 <details> <summary> 2. 실전 주식 분석 </summary>
