@@ -522,3 +522,12 @@ curl -XGET http://localhost:9200/classes/class/1/?pretty
 
 </details>
 
+# 5. 실전 ELK 활용한 실데이터 분석
+
+<details> <summary> 1. 실전 인구 분석 </summary>
+
+</details>
+
+<details> <summary> 2. 실전 주식 분석 </summary>
+
+</details>
