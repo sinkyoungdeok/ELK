@@ -548,4 +548,31 @@ curl -XGET http://localhost:9200/classes/class/1/?pretty
 
 <details> <summary> 2. 실전 주식 분석 </summary>
 
+## 2. 실전 주식 분석
+
+- conf파일의 start_position
+  - end: 데이터가 스트리밍형식으로 계속해서 들어올경우 사용가능, 끝에서부터 데이터를 읽음
+  - begining: 데이터를 처음부터 읽어야할 경우 사용가능, csv파일 등에서 읽을때 사용, 앞에서부터 읽음
+
+1. logstash 실행 
+```
+sudo /usr/local/bin/logstash -f /Users/singyeongdeog/Documents/github_code/ELK/1.elk-stack-data-analysis/ch05/logstash_stock.conf
+```
+
+2. kibana 에서 "stock" index pattern 등록
+
+3. Discover에서 오픈시간과 클로즈 시간의 주식 가격 검색 
+![image](https://user-images.githubusercontent.com/28394879/143672478-600420c6-7e49-4362-8b90-ede3a98871ba.png)
+
+4. Visualize Library의 Line을 활용한 주식 가격 변동 보기
+![image](https://user-images.githubusercontent.com/28394879/143672756-95bd9e9c-6d76-43df-abd9-bb3e14d18df6.png)
+
+5. Visualize Library의 Metric을 활용한 주식의 데이터 갯수(Document 개수) 보기
+![image](https://user-images.githubusercontent.com/28394879/143672806-4c28d4f3-dcef-42dd-9d55-d7ba9975486e.png)
+
+6. 대시보드에 각종 시각화 구성
+![image](https://user-images.githubusercontent.com/28394879/143672849-5adacdbe-87c6-4587-a0cc-6cfb6eae5056.png)
+
+
+
 </details>
