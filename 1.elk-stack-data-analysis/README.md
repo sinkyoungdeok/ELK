@@ -429,6 +429,24 @@ http://localhost:5601/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,v
 
 <details> <summary> 4. 키바나 비주얼라이즈(Kibana Visualize) - 막대 그래프, 파이차트 </summary>
 
+## 4. 키바나 비주얼라이즈(Kibana Visualize) - 막대 그래프, 파이차트
+
+### 창 들어가는방법
+1. Analytics에서 Visualize Library 클릭
+2. Create new visualization 클릭
+3. Explore options 클릭
+4. Vertical Bar(막대그래프) 또는 파이차트 검색 후 클릭
+
+- 막대 그래프
+![image](https://user-images.githubusercontent.com/28394879/143665723-6e0898bd-93a8-454e-9ca3-4ee30d1e932f.png)
+`http://localhost:5601/app/visualize#/create?type=histogram&indexPattern=3be87030-4ec7-11ec-b89d-c5bc45c36b0c&_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:'2015-01-27T02:05:10.924Z',to:now))&_a=(filters:!(),linked:!f,query:(language:kuery,query:''),uiState:(),vis:(aggs:!((enabled:!t,id:'2',params:(customLabel:avg,field:points),schema:metric,type:avg),(enabled:!t,id:'3',params:(field:name,missingBucket:!f,missingBucketLabel:Missing,order:desc,orderBy:'2',otherBucket:!f,otherBucketLabel:Other,size:5),schema:segment,type:terms)),params:(addLegend:!t,addTimeMarker:!f,addTooltip:!t,categoryAxes:!((id:CategoryAxis-1,labels:(filter:!t,show:!t,truncate:100),position:bottom,scale:(type:linear),show:!t,style:(),title:(),type:category)),detailedTooltip:!t,grid:(categoryLines:!f),labels:(show:!f),legendPosition:right,maxLegendLines:1,palette:(name:default,type:palette),radiusRatio:0,seriesParams:!((circlesRadius:3,data:(id:'2',label:avg),drawLinesBetweenPoints:!t,interpolate:linear,lineWidth:2,mode:stacked,show:!t,showCircles:!t,type:histogram,valueAxis:ValueAxis-1)),thresholdLine:(color:%23E7664C,show:!f,style:full,value:10,width:1),times:!(),truncateLegend:!t,type:histogram,valueAxes:!((id:ValueAxis-1,labels:(filter:!f,rotate:0,show:!t,truncate:100),name:LeftAxis-1,position:left,scale:(mode:normal,type:linear),show:!t,style:(),title:(text:avg),type:value))),title:'',type:histogram))`
+
+
+- 파이차트
+![image](https://user-images.githubusercontent.com/28394879/143665340-4669b0b3-744d-45aa-95d9-719f9636e4a7.png)
+`http://localhost:5601/app/visualize#/create?type=pie&indexPattern=3be87030-4ec7-11ec-b89d-c5bc45c36b0c&_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:'2015-01-27T02:05:10.924Z',to:now))&_a=(filters:!(),linked:!f,query:(language:kuery,query:''),uiState:(vis:(legendOpen:!f)),vis:(aggs:!((enabled:!t,id:'1',params:(field:points),schema:metric,type:sum),(enabled:!t,id:'2',params:(field:team,missingBucket:!f,missingBucketLabel:Missing,order:desc,orderBy:'1',otherBucket:!f,otherBucketLabel:Other,size:5),schema:segment,type:terms)),params:(addLegend:!f,addTooltip:!t,distinctColors:!f,isDonut:!t,labels:(last_level:!f,percentDecimals:2,position:default,show:!t,truncate:100,values:!t,valuesFormat:percent),legendPosition:right,maxLegendLines:1,nestedLegend:!f,palette:(name:default,type:palette),truncateLegend:!t,type:pie),title:'',type:pie))`
+
+
 </details>
 
 <details> <summary> 5. 키바나 비주얼라이즈(Kibana Visualize) - 타일 맵, 지포에 표시 </summary>
