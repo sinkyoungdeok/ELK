@@ -489,5 +489,11 @@ curl -XGET http://localhost:9200/classes/class/1/?pretty
 
 <details> <summary> 6. 키바나 대시보드(Dashboard) </summary>
 
+## 6. 키바나 대시보드(Dashboard)
+
+- 대시보드에 여태까지 만든 visualize들을 원하는 위치, 원하는 크기만큼으로 지정해서 만들어 놓을수 있다.
+
+![image](https://user-images.githubusercontent.com/28394879/143666737-aa40003f-eacd-4ab7-831b-1d50b92df3b8.png)
+
 </details>
 
