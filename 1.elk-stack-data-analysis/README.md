@@ -643,6 +643,33 @@ vi /usr/local/etc/filebeat/filebeat.yml
 
 <details> <summary> 3. 큐레이터로 ELK스택 디스크 공간 자동으로 관리하기 </summary>
 
+## 3. 큐레이터로 ELK스택 디스크 공간 자동으로 관리하기
+
+1. curator 설치
+```
+wget https://bootstrap.pypa.io/get-pip.py
+sudo python get-pip.py
+sudo pip install elasticsearch-curator==5.8.4
+```
+
+2. curator 30일 기준 데이터삭제 실행
+```
+/Library/Frameworks/Python.framework/Versions/3.9/bin/curator /Users/singyeongdeog/Documents/github_code/ELK/1.elk-stack-data-analysis/ch06/delete_indices_time_base.yml --config /Users/singyeongdeog/Documents/github_code/ELK/1.elk-stack-data-analysis/ch06/curator.yml
+```
+
+3. curator 300기가 용량 기준 데이터 삭제 실행
+```
+/Library/Frameworks/Python.framework/Versions/3.9/bin/curator /Users/singyeongdeog/Documents/github_code/ELK/1.elk-stack-data-analysis/ch06/delete_indices_size_base.yml --config /Users/singyeongdeog/Documents/github_code/ELK/1.elk-stack-data-analysis/ch06/curator.yml 
+```
+
+4. curator를 cron으로 주기적으로 실행하게 설정할 수 있다. 
+```
+./ch06/curator_cron
+```
+
+
+
+
 </details>
 
 <details> <summary> 4. S3를 활용한 ELK 스택 로그 백업 및 복원 </summary>
