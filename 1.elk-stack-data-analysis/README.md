@@ -581,6 +581,31 @@ sudo /usr/local/bin/logstash -f /Users/singyeongdeog/Documents/github_code/ELK/1
 
 <details> <summary> 1. ELK 스택 - 클라우드 로그 분석 시스템 아키텍처 </summary>
 
+## 1. ELK 스택 - 클라우드 로그 분석 시스템 아키텍처
+
+### ELK 소개
+- ElasticSearch
+  - log를 저장하는 데이터베이스로 활요
+- Logstash
+  - 발생된 로그를 전달받아서 엘라스틱서치에 저장하는 용도
+- Kibana
+  - ElasticSearch에 저장된 로그를 브라우저에 출력하는 용도(시각화)
+
+
+### Filebeat
+- 각각의 서버에 설치되어서, 로그 파일에 변화가 있을 때 변화된 로그 파일을 Logstash로 전송한다.
+
+![image](https://user-images.githubusercontent.com/28394879/143726721-7692b358-82ea-4cc1-824e-ab29495e4a84.png)
+
+
+### Curator
+- ELK스택을 운영시에 오래된 데이터를 삭제하지않아서, 디스크 공간 문제가 생길 수 있는데, 이것을 해결해주는것이 Curator이다.
+- 손쉽게 데이터 보증기간 및 데이터 최대 사용량을 설정해서 ELK스택의 디스크 공간 문제가 없도록 해준다.
+
+### S3 
+- 큐레이터로 한달이상된 데이터를 삭제하는데, 한달이상된 데이터를 봐야되는 경우 S3에 로그를 백업및 복원할 수 있다.
+![image](https://user-images.githubusercontent.com/28394879/143726778-cd9b0f85-e1f6-4164-8fda-6410aa0f62c7.png)
+
 </details>
 
 <details> <summary> 2. FileBeat으로 분산 서버 로그 ELK 스택에 전달하기 </summary>
