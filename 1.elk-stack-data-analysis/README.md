@@ -674,4 +674,85 @@ sudo pip install elasticsearch-curator==5.8.4
 
 <details> <summary> 4. S3를 활용한 ELK 스택 로그 백업 및 복원 </summary>
 
+## 4. S3를 활용한 ELK 스택 로그 백업 및 복원
+
+1. s3 repository plugin 설치
+```
+cd /usr/local/bin
+./elasticsearch-plugin install repository-s3
+brew services restart elasticsearch-full
+```
+
+2. elasticsearch BACKUP 설정 (curl_backup_config.sh)
+```
+curl -XPUT 'http://localhost:9200/_snapshot/s3_elk_backup' -H 'Content-Type: application/json' -d '{
+    "type": "s3",
+    "settings": {
+        "access_key": "[YOUR_ACCESS_KEY]",
+        "secret_key": "YOUR_SECRET_KEY",
+        "bucket": "YOUR_BUCKET",
+        "region": "YOUR_REGION",
+        "base_path": "elasticsearch",
+        "max_retries": 3
+    }
+}'
+```
+
+3. BACKUP 설정 cron (s3_backup_cron)
+```
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+HOME=/
+
+# daily
+0 0 * * * ec2-user /home/ec2-user/daily_elk_backup.sh > /home/ec2-user/log/elk_backup.log 2>&1
+```
+
+4. 3번의 cron에서 돌리고있는 daily_elk_backup.sh
+```
+TODAY=$(date +'%Y.%m.%d')
+YESTERDAY=$(date --date="1 days ago" +'%Y.%m.%d')
+echo Today is $TODAY
+echo Yesterday $YESTERDAY indices will be stored in S3
+
+INDEX_PREFIXES=''
+INDEX_PREFIXES+='tomcat- '
+#INDEX_PREFIXES+='filebeat- '
+#INDEX_PREFIXES+='database- '
+
+for prefix in $INDEX_PREFIXES;
+do
+	INDEX_NAME=${prefix}$YESTERDAY
+	SNAPSHOT_NAME=$INDEX_NAME"-snapshot"
+	echo Start Snapshot $INDEX_NAME
+	curl -XPUT "http://localhost:9200/_snapshot/s3_elk_backup/$SNAPSHOT_NAME?wait_for_completion=true" -d '{
+		"indices": "'"$INDEX_NAME"'",
+		"ignore_unavailable": "true",
+		"include_global_state": false
+	}'
+	echo Successfully completed storing "$INDEX_NAME" in S3
+done
+```
+
+5. backup 설정 확인
+```
+curl -XGET localhost:9200/_snapshot/s3_elk_backup/_all\?pretty
+```
+
+6. backup한 index 삭제
+```
+curl -XDELETE 'localhost:9200/tomcat-2017.08.06
+``` 
+
+7. index 복원하기 (elk_restore.sh)
+```
+sh elk_restore.sh tomcat-2017.08.06
+```
+
+
+
+
+
+
+
 </details>
