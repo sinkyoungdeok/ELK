@@ -612,33 +612,31 @@ sudo /usr/local/bin/logstash -f /Users/singyeongdeog/Documents/github_code/ELK/1
 
 ## 2. FileBeat으로 분산 서버 로그 ELK 스택에 전달하기
 
-- filebeat.yml 위치
-  - `usr/local/etc/filebeat`
-
-1. filebeat yml 설정 
-2. filebeat 재실행
-```
-brew services restart elastic/tap/filebeat-full
-```
-3. logstash 실행 
-```
-/usr/local/bin/logstash -f /Users/singyeongdeog/Documents/github_code/ELK/1.elk-stack-data-analysis/ch06/logstash.conf
-```
-3. tomcat 설치 
+1. tomcat 설치 
 ```
 brew install tomcat
 ``` 
-4. 톰캣 실행 (brew services start로 하면 catalina.out이 안보임)
+2. 톰캣 실행 (brew services start로 하면 catalina.out이 안보임)
 ```
 /usr/local/Cellar/tomcat/10.0.13/bin/catalina start
 ```   
-5. catalina.out 확인
+3. catalina.out 확인
 ```
-tail -f /usr/local/Cellar/tomcat/10.0.13/libexec/logs
+tail -f /usr/local/Cellar/tomcat/10.0.13/libexec/logs/catalina.out
 ```
-
-
-
+4. logstash 실행 
+```
+/usr/local/bin/logstash -f /Users/singyeongdeog/Documents/github_code/ELK/1.elk-stack-data-analysis/ch06/logstash.conf
+```
+5. filebeat yml 설정 (filebeat.prospectors는 최신버전에선 지원 안함)
+```
+vi /usr/local/etc/filebeat/filebeat.yml
+```
+6. filebeat 실행
+```
+/usr/local/bin/filebeat -e
+```
+7. 
 
 
 </details>

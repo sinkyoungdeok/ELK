@@ -1,7 +1,8 @@
-filebeat.prospectors:
-  - input_type: log
-    paths:
-      - /usr/local/Cellar/tomcat/10.0.13/libexec/logs/catalina.out
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /usr/local/Cellar/tomcat/10.0.13/libexec/logs/catalina.out
   
 output.logstash:
   hosts: ["localhost:5044"]
