@@ -576,3 +576,21 @@ sudo /usr/local/bin/logstash -f /Users/singyeongdeog/Documents/github_code/ELK/1
 
 
 </details>
+
+# 6. ELK 클라우드 로그분석 시스템
+
+<details> <summary> 1. ELK 스택 - 클라우드 로그 분석 시스템 아키텍처 </summary>
+
+</details>
+
+<details> <summary> 2. FileBeat으로 분산 서버 로그 ELK 스택에 전달하기 </summary>
+
+</details>
+
+<details> <summary> 3. 큐레이터로 ELK스택 디스크 공간 자동으로 관리하기 </summary>
+
+</details>
+
+<details> <summary> 4. S3를 활용한 ELK 스택 로그 백업 및 복원 </summary>
+
+</details>
